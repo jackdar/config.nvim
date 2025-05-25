@@ -29,8 +29,5 @@ return {
 
     -- Open the project root directory in the current window
     vim.keymap.set('n', '<leader>E', "<CMD>lua vim.cmd('Oil' .. vim.fn.getcwd())<CR>", { desc = 'Open [E]xplorer in root' })
-
-    -- -- Open parent directory in floating window
-    -- vim.keymap.set('n', '<leader>E', '<CMD>Oil --float<CR>', { desc = 'Open [E]xplorer' })
   end,
 }

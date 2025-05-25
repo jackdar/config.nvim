@@ -1,5 +1,4 @@
 -- [[ Lazy Configuration ]]
-
 return {
   change_detection = {
     notify = false,

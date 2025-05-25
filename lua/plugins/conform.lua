@@ -43,16 +43,13 @@ return {
     },
 
     format_on_save = function(bufnr)
-      -- Disable autoformat on certain filetypes
       local ignore_filetypes = { 'sql', 'java' }
       if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
         return
       end
-      -- Disable with a global or buffer-local variable
       if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
         return
       end
-      -- Disable autoformat for files in a certain path
       local bufname = vim.api.nvim_buf_get_name(bufnr)
       if bufname:match '/node_modules/' then
         return
@@ -70,7 +67,7 @@ return {
     vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
     vim.api.nvim_create_user_command('ToggleFormat', function()
-      vim.g.disable_autoformat = not vim.g.disable_autoformat
+      require('state').set('disable_autoformat', not vim.g.disable_autoformat)
 
       local status = vim.g.disable_autoformat and 'disabled' or 'enabled'
       vim.notify('Autoformatting ' .. status, vim.log.levels.INFO)

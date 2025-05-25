@@ -6,7 +6,6 @@ return {
     vim.api.nvim_create_user_command('ToggleCopilot', function()
       require('state').set('copilot_enabled', not vim.g.copilot_enabled)
 
-      -- Sync Copilot state with our global variable
       local status = vim.g.copilot_enabled and 'enable' or 'disable'
       vim.cmd('silent! Copilot ' .. status)
       vim.notify('Copilot suggestions ' .. status, vim.log.levels.INFO)
