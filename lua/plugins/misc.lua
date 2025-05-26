@@ -31,10 +31,14 @@ return { -- Standalone plugins with less than 10 lines of config go here
     ---@module "ibl"
     ---@type ibl.config
     opts = {
+      indent = { char = '▏' },
+      scope = { show_start = false, show_end = false },
       exclude = {
         filetypes = {
           'rust',
           'c',
+          'lua',
+          'go',
         },
       },
     },
@@ -69,13 +73,6 @@ return { -- Standalone plugins with less than 10 lines of config go here
     ---@type render.md.UserConfig
     opts = {
       render_modes = { 'n', 'c', 't' },
-    },
-  },
-  {
-    '3rd/image.nvim',
-    build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
-    opts = {
-      processor = 'magick_cli',
     },
   },
 }
