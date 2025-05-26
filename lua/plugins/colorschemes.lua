@@ -66,13 +66,38 @@ return {
   },
   {
     'rose-pine/neovim',
+    name = 'rose-pine',
     lazy = false,
     priority = 1000,
     config = function()
       require('rose-pine').setup {
-        transparent = true,
         disable_background = true,
         disable_italics = true,
+        -- styles = {
+        --   transparency = true,
+        -- },
+        -- highlight_groups = {
+        --   TelescopeNormal = { bg = 'none' },
+        --   TelescopePromptNormal = { bg = 'none' },
+        --
+        --   TelescopeMatching = { bg = 'none' },
+        --   TelescopeSelection = { fg = 'text', bg = 'none' },
+        --
+        --   TelescopePromptTitle = { bg = 'none' },
+        --   TelescopePromptPrefix = { bg = 'none' },
+        --   TelescopePromptCounter = { bg = 'none' },
+        --   TelescopePromptBorder = { bg = 'none' },
+        --
+        --   TelescopeResultsTitle = { bg = 'none' },
+        --   TelescopeResultsNormal = { fg = 'subtle', bg = 'none' },
+        --   TelescopeResultsBorder = { bg = 'none' },
+        --
+        --   TelescopePreviewTitle = { bg = 'none' },
+        --   TelescopePreviewNormal = { bg = 'none' },
+        --   TelescopePreviewBorder = { bg = 'none' },
+        --   TelescopeBorder = { fg = 'highlight_high', bg = 'none' },
+        --   TelescopeSelectionCaret = { fg = 'rose', bg = 'rose' },
+        -- },
       }
     end,
   },
