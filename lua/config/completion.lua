@@ -10,7 +10,6 @@ require('tailwindcss-colorizer-cmp').setup {
 }
 
 require('copilot_cmp').setup()
-
 local cmp = require 'cmp'
 
 cmp.setup {

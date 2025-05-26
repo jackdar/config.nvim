@@ -76,28 +76,29 @@ return {
         -- styles = {
         --   transparency = true,
         -- },
-        -- highlight_groups = {
-        --   TelescopeNormal = { bg = 'none' },
-        --   TelescopePromptNormal = { bg = 'none' },
-        --
-        --   TelescopeMatching = { bg = 'none' },
-        --   TelescopeSelection = { fg = 'text', bg = 'none' },
-        --
-        --   TelescopePromptTitle = { bg = 'none' },
-        --   TelescopePromptPrefix = { bg = 'none' },
-        --   TelescopePromptCounter = { bg = 'none' },
-        --   TelescopePromptBorder = { bg = 'none' },
-        --
-        --   TelescopeResultsTitle = { bg = 'none' },
-        --   TelescopeResultsNormal = { fg = 'subtle', bg = 'none' },
-        --   TelescopeResultsBorder = { bg = 'none' },
-        --
-        --   TelescopePreviewTitle = { bg = 'none' },
-        --   TelescopePreviewNormal = { bg = 'none' },
-        --   TelescopePreviewBorder = { bg = 'none' },
-        --   TelescopeBorder = { fg = 'highlight_high', bg = 'none' },
-        --   TelescopeSelectionCaret = { fg = 'rose', bg = 'rose' },
-        -- },
+        highlight_groups = {
+          --   TelescopeNormal = { bg = 'none' },
+          --   TelescopePromptNormal = { bg = 'none' },
+          --
+          --   TelescopeMatching = { bg = 'none' },
+          --   TelescopeSelection = { fg = 'text', bg = 'none' },
+          --
+          --   TelescopePromptTitle = { bg = 'none' },
+          --   TelescopePromptPrefix = { bg = 'none' },
+          --   TelescopePromptCounter = { bg = 'none' },
+          --   TelescopePromptBorder = { bg = 'none' },
+          --
+          --   TelescopeResultsTitle = { bg = 'none' },
+          --   TelescopeResultsNormal = { fg = 'subtle', bg = 'none' },
+          --   TelescopeResultsBorder = { bg = 'none' },
+          --
+          --   TelescopePreviewTitle = { bg = 'none' },
+          --   TelescopePreviewNormal = { bg = 'none' },
+          --   TelescopePreviewBorder = { bg = 'none' },
+          --   TelescopeBorder = { fg = 'highlight_high', bg = 'none' },
+          --   TelescopeSelectionCaret = { fg = 'rose', bg = 'rose' },
+          CursorColumn = { fg = 'iris' },
+        },
       }
     end,
   },
