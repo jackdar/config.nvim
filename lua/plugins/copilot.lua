@@ -23,9 +23,9 @@ return {
         gitcommit = false,
         gitrebase = false,
         hgcommit = false,
-        svn = false,
-        cvs = false,
-        ['.'] = false,
+        -- svn = false,
+        -- cvs = false,
+        -- ['.'] = false,
       },
     }
 

@@ -12,6 +12,8 @@ require('tailwindcss-colorizer-cmp').setup {
 require('copilot_cmp').setup()
 local cmp = require 'cmp'
 
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
+
 cmp.setup {
   sources = {
     { name = 'copilot', group_index = 2 },
@@ -30,8 +32,8 @@ cmp.setup {
   },
 
   mapping = cmp.mapping.preset.insert {
-    ['<C-n>'] = cmp.mapping.select_next_item(), -- Select the [n]ext item
-    ['<C-p>'] = cmp.mapping.select_prev_item(), -- Select the [p]revious item
+    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select), -- Select the [n]ext item
+    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select), -- Select the [p]revious item
 
     -- Scroll the documentation window [b]ack / [f]orward
     ['<C-j>'] = cmp.mapping.scroll_docs(-4),

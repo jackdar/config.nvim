@@ -32,36 +32,14 @@ return {
             end,
           },
           find_files = {
-            file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+            file_ignore_patterns = { '.git', '.venv' },
             hidden = true,
+            layout_strategy = 'flex',
           },
         },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
-          },
-          ['themes'] = {
-            layout_config = {
-              horizontal = {
-                width = 0.8,
-                height = 0.7,
-              },
-            },
-            enable_previewer = true,
-            enable_live_preview = false,
-            ignore = { 'default', 'desert', 'elflord', 'habamax' },
-            light_themes = {
-              ignore = true,
-              keywords = { 'light', 'day', 'frappe' },
-            },
-            dark_themes = {
-              ignore = false,
-              keywords = { 'dark', 'night', 'black' },
-            },
-            persist = {
-              enabled = true,
-              path = vim.fn.stdpath 'config' .. '/lua/colorscheme.lua',
-            },
           },
         },
       }

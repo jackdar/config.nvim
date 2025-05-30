@@ -140,7 +140,6 @@ return { -- LSP Plugins
         },
         automatic_enable = {
           exclude = {
-            'rust_analyzer',
             'phpactor',
           },
         },
