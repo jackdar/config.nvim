@@ -18,15 +18,6 @@ vim.api.nvim_create_autocmd('TermOpen', {
   end,
 })
 
--- Sync Copilot state with saved global variable
-vim.api.nvim_create_autocmd('InsertEnter', {
-  desc = 'Set Copilot to persisted state',
-  callback = function()
-    local status = vim.g.copilot_enabled and 'enable' or 'disable'
-    vim.cmd('silent! Copilot ' .. status)
-  end,
-})
-
 -- Disable auto comment continuation
 vim.api.nvim_create_autocmd('FileType', {
   pattern = '*',

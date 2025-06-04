@@ -47,7 +47,7 @@ return {
       if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
         return
       end
-      if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+      if not vim.g.auto_format or not vim.b[bufnr].auto_format then
         return
       end
       local bufname = vim.api.nvim_buf_get_name(bufnr)
@@ -67,9 +67,9 @@ return {
     vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
     vim.api.nvim_create_user_command('ToggleFormat', function()
-      require('state').set('disable_autoformat', not vim.g.disable_autoformat)
+      require('state').set('auto_format', not vim.g.auto_format)
 
-      local status = vim.g.disable_autoformat and 'disabled' or 'enabled'
+      local status = vim.g.auto_format and 'enabled' or 'disabled'
       vim.notify('Autoformatting ' .. status, vim.log.levels.INFO)
     end, {
       desc = 'Toggle autoformat-on-save on/off',

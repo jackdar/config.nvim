@@ -8,6 +8,11 @@ local function setup_tracked_variables()
   M.add('auto_format', true)
   M.add('lsp_diagnostics_enabled', true)
   M.add('colorscheme', 'rose-pine')
+  M.add('relative_numbers', true)
+
+  vim.api.nvim_create_user_command('State', function()
+    vim.cmd(':lua require(\'state\').list()')
+  end, {})
 end
 
 local state_file = vim.fn.stdpath 'state' .. '/nvim-globals.lua'
@@ -156,13 +161,10 @@ end
 -- List all tracked globals
 function M.list()
   local state = load_state()
-  local tracked = {}
 
   for key, value in pairs(state) do
-    table.insert(tracked, { key = key, value = vim.g[key] or value })
+    print(key .. ': ' .. tostring(value))
   end
-
-  return tracked
 end
 
 -- Check if a global is tracked

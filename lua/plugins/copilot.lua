@@ -2,6 +2,18 @@ return {
   'zbirenbaum/copilot.lua',
   cmd = 'Copilot',
   event = 'InsertEnter',
+  init = function()
+    vim.api.nvim_create_user_command('ToggleCopilot', function()
+      require('state').set('copilot_enabled', not vim.g.copilot_enabled)
+
+      local status = vim.g.copilot_enabled and 'enable' or 'disable'
+      vim.cmd('silent! Copilot ' .. status)
+
+      vim.notify('Copilot suggestions ' .. status, vim.log.levels.INFO)
+    end, { desc = 'Toggle Copilot suggestions on/off' })
+
+    vim.keymap.set('n', '<F10>', '<cmd>ToggleCopilot<CR>')
+  end,
   config = function()
     require('copilot').setup {
       enabled = vim.g.copilot_enabled,
@@ -28,15 +40,5 @@ return {
         -- ['.'] = false,
       },
     }
-
-    vim.api.nvim_create_user_command('ToggleCopilot', function()
-      require('state').set('copilot_enabled', not vim.g.copilot_enabled)
-
-      local status = vim.g.copilot_enabled and 'enable' or 'disable'
-      vim.cmd('silent! Copilot ' .. status)
-      vim.notify('Copilot suggestions ' .. status, vim.log.levels.INFO)
-    end, { desc = 'Toggle Copilot suggestions on/off' })
-
-    vim.keymap.set('n', '<F10>', '<cmd>ToggleCopilot<CR>')
   end,
 }

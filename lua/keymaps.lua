@@ -97,3 +97,6 @@ set('n', '<leader>M', ':make build<CR>', opts)
 
 -- Insert contents of named register literally
 set('i', '<C-r>', '<C-r><C-o>', opts)
+
+-- Toggle relative line numbering
+set('n', '<leader>ln', '<cmd>ToggleRl<CR>', opts)

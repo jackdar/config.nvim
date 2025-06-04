@@ -3,7 +3,7 @@ local opt = vim.opt
 
 -- Make line numbers default
 opt.number = true
-opt.relativenumber = true
+opt.relativenumber = vim.g.relative_numbers
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 opt.mouse = 'a'
@@ -89,7 +89,7 @@ opt.sidescrolloff = 8
 -- Insert mode cursor as block
 -- opt.guicursor = 'n-v-c-sm:block,ci-ve:ver25,r-cr-o:hor20,i:block-blinkoff400-blinkon250-Cursor/lCursor'
 -- opt.guicursor = 'n-v-c-sm:block,ci-ve:ver25,r-cr-o:hor20,i:block'
-vim.opt.guicursor = 'i:block-blinkwait0-blinkoff400-blinkon250'
+-- vim.opt.guicursor = 'i:block-blinkwait0-blinkoff400-blinkon250'
 -- opt.guicursor = ''
 
 -- If performing an operation that would fail due to unsaved changes in the buffer (like `:q`),

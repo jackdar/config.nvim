@@ -15,6 +15,9 @@ require 'keymaps'
 -- [[ Setting auto commands ]]
 require 'autocmds'
 
+-- [[ Work: Bachcare ]]
+require 'bachcare'
+
 -- For mason.nvim, yet to find a better way to achieve this
 vim.cmd("let $PATH = '" .. vim.g.node_host_prog .. ":' . $PATH")
 

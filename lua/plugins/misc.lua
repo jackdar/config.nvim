@@ -4,10 +4,6 @@ return { -- Standalone plugins with less than 10 lines of config go here
     'tpope/vim-sleuth',
   },
   {
-    -- Powerful Git integration for Vim
-    'tpope/vim-fugitive',
-  },
-  {
     -- GitHub integration for vim-fugitive
     'tpope/vim-rhubarb',
   },
