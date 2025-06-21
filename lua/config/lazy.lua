@@ -15,6 +15,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Set Node path for Mason
+vim.env.PATH = vim.fn.expand "$HOME/.local/share/fnm/aliases/default/bin:" .. vim.env.PATH
+
 -- [[ Configure and install plugins ]]
 require("lazy").setup {
   spec = {

@@ -15,6 +15,11 @@ return {
         auto_insert = true,
       },
     },
+    accept = {
+      auto_brackets = {
+        enabled = true,
+      },
+    },
   },
   sources = {
     default = { "lsp", "path", "snippets", "lazydev", "buffer", "copilot" },

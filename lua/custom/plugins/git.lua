@@ -1,24 +1,24 @@
 return {
   {
-    'tpope/vim-fugitive',
+    "tpope/vim-fugitive",
     dependencies = {
-      'tpope/vim-rhubarb',
+      "tpope/vim-rhubarb",
     },
-    event = 'VeryLazy',
+    event = "VeryLazy",
     keys = {
-      { '<leader>G', '<CMD>tab Git<CR>' },
-      { '<leader>ga', '<CMD>Git add %:p<CR>' },
-      { '<leader>gs', '<CMD>G<CR>' },
-      { '<leader>gt', '<CMD>Git commit -v -q %:p<CR>' },
-      { '<leader>gd', '<CMD>Gdiff<CR>' },
-      { '<leader>ge', '<CMD>Gedit<CR>' },
-      { '<leader>gr', '<CMD>Gread<CR>' },
-      { '<leader>gr', '<CMD>Gread<CR>' },
+      { "<leader>G", "<cmd>tab Git<CR>" },
+      { "<leader>ga", "<cmd>Git add %:p<CR>" },
+      { "<leader>gs", "<cmd>G<CR>" },
+      { "<leader>gt", "<cmd>Git commit -v -q %:p<CR>" },
+      { "<leader>gd", "<cmd>Gdiff<CR>" },
+      { "<leader>ge", "<cmd>Gedit<CR>" },
+      { "<leader>gr", "<cmd>Gread<CR>" },
+      { "<leader>gr", "<cmd>Gread<CR>" },
     },
   },
   {
-    'lewis6991/gitsigns.nvim',
-    event = 'BufReadPre',
-    opts = require 'config.gitsigns',
+    "lewis6991/gitsigns.nvim",
+    event = "BufReadPre",
+    opts = require "config.gitsigns",
   },
 }
