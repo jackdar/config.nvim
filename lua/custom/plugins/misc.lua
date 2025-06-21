@@ -1,5 +1,24 @@
 return {
   {
+    "nvim-tree/nvim-web-devicons",
+    opts = {
+      override = {
+        directory = {
+          icon = "",
+          name = "Directory",
+        },
+        directory_empty = {
+          icon = "",
+          name = "DirectoryEmpty",
+        },
+        terminal = {
+          icon = "",
+          name = "Terminal",
+        },
+      },
+    },
+  },
+  {
     "christoomey/vim-tmux-navigator",
     cmd = {
       "TmuxNavigateLeft",
@@ -19,69 +38,71 @@ return {
   },
   {
     -- Detect tabstop and shiftwidth automatically
-    'tpope/vim-sleuth',
-    event = 'BufReadPre',
+    "tpope/vim-sleuth",
+    event = "BufReadPre",
   },
   {
     -- Highlight todo, notes, etc in comments
-    'folke/todo-comments.nvim',
-    event = 'BufReadPre',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    "folke/todo-comments.nvim",
+    event = "BufReadPre",
+    dependencies = { "nvim-lua/plenary.nvim" },
     opts = { signs = false },
   },
   {
     -- High-performance color highlighter
-    'norcalli/nvim-colorizer.lua',
-    event = 'VimEnter',
+    "norcalli/nvim-colorizer.lua",
+    event = "BufReadPre",
     config = function()
-      require('colorizer').setup()
+      require("colorizer").setup()
     end,
   },
   { -- Insert indent lines
-    'lukas-reineke/indent-blankline.nvim',
-    main = 'ibl',
-    event = 'BufReadPre',
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    ft = { "javascript", "typescript", "jsx", "tsx", "html", "css", "scss", "json", "yaml", "markdown" },
+    event = "BufReadPre",
+    lazy = true,
     ---@module "ibl"
     ---@type ibl.config
     opts = {
-      indent = { char = '▏' },
+      indent = { char = "▏" },
       scope = { show_start = false, show_end = false },
-      exclude = {
-        filetypes = {
-          'rust',
-          'c',
-          'lua',
-          'go',
-        },
-      },
     },
   },
   { -- Autopair brackets and parenthesis
-    'windwp/nvim-autopairs',
-    event = { 'BufReadPre', 'BufNewFile' },
-    dependencies = { 'hrsh7th/nvim-cmp' },
-    config = function()
-      require('nvim-autopairs').setup {}
-      local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-      local cmp = require 'cmp'
-      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
-    end,
+    "windwp/nvim-autopairs",
+    event = "VeryLazy",
+    opts = {},
   },
   { -- Auto pair HTML and JSX tags
-    'windwp/nvim-ts-autotag',
-    ft = { 'javascript', 'typescript', 'jsx', 'tsx', 'html', 'blade', 'php', 'xml' },
+    "windwp/nvim-ts-autotag",
+    ft = { "javascript", "typescript", "jsx", "tsx", "html", "blade", "php", "xml" },
     config = function()
-      require('nvim-ts-autotag').setup()
+      require("nvim-ts-autotag").setup()
     end,
   },
   { -- Render markdown files nicely in Neovim
-    'MeanderingProgrammer/render-markdown.nvim',
-    ft = 'markdown',
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    "MeanderingProgrammer/render-markdown.nvim",
+    lazy = true,
+    event = "BufReadPre",
+    ft = "markdown",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {
-      render_modes = { 'n', 'c', 't' },
+      render_modes = { "n", "c", "t" },
+    },
+    {
+      "crispgm/nvim-tabline",
+      dependencies = { "nvim-tree/nvim-web-devicons" }, -- optional
+      event = { "TabNew" },
+      config = function()
+        require("tabline").setup {
+          show_icon = true,
+          show_index = false,
+          brackets = { "", "" },
+        }
+      end,
     },
   },
 }

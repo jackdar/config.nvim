@@ -18,17 +18,11 @@ vim.api.nvim_create_autocmd("TermOpen", {
   end,
 })
 
--- Apply current default node version
-vim.api.nvim_create_autocmd("VimEnter", {
-  desc = "Set global node host program",
-  callback = function()
-    vim.env.PATH = vim.fn.expand "$HOME/.local/share/fnm/aliases/default/bin:" .. vim.env.PATH
-  end,
-})
-
 -- Check and apply globals
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
+    vim.cmd "set number"
+
     -- Expand comments
     if vim.g.EXPANDCOMMENTS then
       vim.cmd "set formatoptions-="
@@ -42,5 +36,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
     else
       vim.cmd "set norelativenumber"
     end
+  end,
+})
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "TelescopePreviewerLoaded",
+  callback = function(args)
+    vim.wo.wrap = true
   end,
 })

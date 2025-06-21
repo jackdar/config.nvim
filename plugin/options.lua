@@ -20,6 +20,8 @@ o.undofile = true
 o.hlsearch = false
 o.incsearch = true
 o.termguicolors = true
+o.background = "dark"
+o.colorcolumn = "120"
 
 o.wrap = false
 o.linebreak = true

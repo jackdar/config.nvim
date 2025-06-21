@@ -22,13 +22,11 @@ map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]ui
 
 map("t", "<Esc><Esc>", "<Esc><C-\\><C-n>", { desc = "Exit terminal mode" })
 
-map("x", "<leader>p", [["_dP]], { desc = "Delete into void register when pasting" })
-map("x", "<leader>d", [["_d]], { desc = "Delete into void register" })
-map("n", "<leader>D", [["_D]], { desc = "Delete to end of line into void register" })
-map("x", "<leader>y", [["+y]], { desc = "Yank into system clipboard" })
-map("n", "<leader>Y", [["+Y]], { desc = "Yank to end of line into the system clipboard" })
-map("n", "<leader>%y", "<cmd>%y<CR>", { desc = "Yank contents of buffer into unnamed register" })
-map("n", "<leader>%Y", "<cmd>%y+<CR>", { desc = "Yank contents of buffer into system clipboard" })
+map("x", "<leader>p", '"_dP', { desc = "Delete into void register when pasting" })
+map({ "n", "x" }, "<leader>d", '"_d', { desc = "Delete into void register" })
+map({ "n", "x" }, "<leader>y", '"+y', { desc = "Yank into system clipboard" })
+map("n", "<leader>D", '"_d$', { desc = "Delete to end of line into void register" })
+map("n", "<leader>Y", '"+y$', { desc = "Yank to end of line into the system clipboard" })
 
 map("n", "<leader>%", "<cmd>let @+=@%<CR>", { desc = "Copy file path to system clipboard" })
 

@@ -15,6 +15,11 @@ return {
         auto_insert = true,
       },
     },
+    accept = {
+      auto_brackets = {
+        enabled = true,
+      },
+    },
   },
   sources = {
     default = { "lsp", "path", "snippets", "lazydev", "buffer", "copilot" },
@@ -30,7 +35,6 @@ return {
   },
   snippets = { preset = "luasnip" },
   fuzzy = { implementation = "prefer_rust_with_warning" },
-  signature = { enabled = true },
   enabled = function()
     return not vim.tbl_contains({ "markdown", "oil" }, vim.bo.filetype)
   end,
