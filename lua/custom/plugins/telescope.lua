@@ -17,7 +17,10 @@ return {
     require("telescope").setup {
       defaults = {
         mappings = {
-          i = { ["<c-enter>"] = "to_fuzzy_refine" },
+          i = {
+            ["<c-enter>"] = "to_fuzzy_refine",
+            ["<esc>"] = require("telescope.actions").close,
+          },
         },
         layout_strategy = "flex",
       },

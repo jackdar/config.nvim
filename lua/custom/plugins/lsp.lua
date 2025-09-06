@@ -1,6 +1,5 @@
 return {
   {
-    -- Main LSP Configuration
     "neovim/nvim-lspconfig",
     event = { "VeryLazy" },
     dependencies = {
@@ -18,24 +17,16 @@ return {
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       { "j-hui/fidget.nvim", opts = {} },
       { "saghen/blink.cmp" },
-      {
-        "nvimdev/lspsaga.nvim",
-        config = function()
-          require("lspsaga").setup {
-            lightbulb = {
-              enable = false,
-            },
-          }
-        end,
-        dependencies = {
-          "nvim-treesitter/nvim-treesitter",
-          "nvim-tree/nvim-web-devicons",
-        },
-      },
+      -- {
+      --   dir = "~/plugins/prettier-helpers",
+      --   config = function()
+      --     require("prettier_helpers").setup()
+      --   end,
+      -- },
     },
     config = function()
       vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+        group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
         callback = function(event)
           local map = function(keys, func, desc, mode)
             mode = mode or "n"
@@ -68,7 +59,7 @@ return {
             client
             and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf)
           then
-            local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+            local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
             vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
               buffer = event.buf,
               group = highlight_augroup,
@@ -82,10 +73,10 @@ return {
             })
 
             vim.api.nvim_create_autocmd("LspDetach", {
-              group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
+              group = vim.api.nvim_create_augroup("lsp-detach", { clear = true }),
               callback = function(event2)
                 vim.lsp.buf.clear_references()
-                vim.api.nvim_clear_autocmds { group = "kickstart-lsp-highlight", buffer = event2.buf }
+                vim.api.nvim_clear_autocmds { group = "lsp-highlight", buffer = event2.buf }
               end,
             })
           end
@@ -163,6 +154,7 @@ return {
         "stylua",
         "prettierd",
         "php-cs-fixer",
+        "shfmt",
       })
       require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 

@@ -7,6 +7,12 @@ local function map(mode, l, r, opts)
   vim.keymap.set(mode, l, r, opts)
 end
 
+map("n", "-", function()
+  local cur_file = vim.fn.expand "%:t"
+  vim.cmd.Ex()
+  vim.fn.search("^" .. cur_file .. "$")
+end, { desc = "Open a file explorer" })
+
 map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Make the current file executable" })
 map("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current file" })
 
@@ -32,20 +38,12 @@ map("n", "<leader>%", "<cmd>let @+=@%<CR>", { desc = "Copy file path to system c
 
 map("n", "<C-d>", "<C-d>zz", { desc = "Vertical scroll and center on <C-d>" })
 map("n", "<C-u>", "<C-u>zz", { desc = "Vertical scroll and center on <C-u>" })
-
 map("n", "n", "nzzzv", { desc = "Find and center on [n]" })
+map("n", "N", "Nzzzv", { desc = "Find and center on [N]" })
+map("n", "J", "mzJ`z", { desc = "Keep cursor in same place when [J]oining lines" })
 
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move a line up in visual mode" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move a line down in visual mode" })
-
-map("n", "J", "mzJ`z", { desc = "Keep cursor in same place when [J]oining lines" })
-
-map("n", "<C-d>", "<C-d>zz", { desc = "Vertical scroll and center on <C-d>" })
-map("n", "<C-u>", "<C-u>zz", { desc = "Vertical scroll and center on <C-u>" })
-
-map("n", "n", "nzzzv", { desc = "Find and center on [n]" })
-map("n", "N", "Nzzzv", { desc = "Find and center on [N]" })
-
 map("v", "<", "<gv", { desc = "Stay in visual mode after indenting" })
 map("v", ">", ">gv", { desc = "Stay in visual mode after indenting" })
 

@@ -1,24 +1,5 @@
 return {
   {
-    "nvim-tree/nvim-web-devicons",
-    opts = {
-      override = {
-        directory = {
-          icon = "",
-          name = "Directory",
-        },
-        directory_empty = {
-          icon = "",
-          name = "DirectoryEmpty",
-        },
-        terminal = {
-          icon = "",
-          name = "Terminal",
-        },
-      },
-    },
-  },
-  {
     "christoomey/vim-tmux-navigator",
     cmd = {
       "TmuxNavigateLeft",
@@ -56,19 +37,19 @@ return {
       require("colorizer").setup()
     end,
   },
-  { -- Insert indent lines
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    ft = { "javascript", "typescript", "jsx", "tsx", "html", "css", "scss", "json", "yaml", "markdown" },
-    event = "BufReadPre",
-    lazy = true,
-    ---@module "ibl"
-    ---@type ibl.config
-    opts = {
-      indent = { char = "▏" },
-      scope = { show_start = false, show_end = false },
-    },
-  },
+  -- { -- Insert indent lines
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   main = "ibl",
+  --   ft = { "javascript", "typescript", "jsx", "tsx", "html", "css", "scss", "json", "yaml", "markdown" },
+  --   event = "BufReadPre",
+  --   lazy = true,
+  --   ---@module "ibl"
+  --   ---@type ibl.config
+  --   opts = {
+  --     indent = { char = "▏" },
+  --     scope = { show_start = false, show_end = false },
+  --   },
+  -- },
   { -- Autopair brackets and parenthesis
     "windwp/nvim-autopairs",
     event = "VeryLazy",
@@ -91,18 +72,6 @@ return {
     ---@type render.md.UserConfig
     opts = {
       render_modes = { "n", "c", "t" },
-    },
-    {
-      "crispgm/nvim-tabline",
-      dependencies = { "nvim-tree/nvim-web-devicons" }, -- optional
-      event = { "TabNew" },
-      config = function()
-        require("tabline").setup {
-          show_icon = true,
-          show_index = false,
-          brackets = { "", "" },
-        }
-      end,
     },
   },
 }
