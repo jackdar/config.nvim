@@ -16,7 +16,6 @@ return {
   opts = {
     formatters_by_ft = {
       lua = { "stylua" },
-      python = { "black" },
       go = { "goimports-reviser" },
       javascript = { "prettierd" },
       typescript = { "prettierd" },
@@ -29,7 +28,7 @@ return {
       sh = { "shfmt" },
       zsh = { "shfmt" },
       blade = { "blade-formatter" },
-      rustfmt = { "rust" },
+      rust = { "rustfmt" },
     },
 
     default_format_opts = {

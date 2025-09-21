@@ -7,14 +7,12 @@ local function map(mode, l, r, opts)
   vim.keymap.set(mode, l, r, opts)
 end
 
-map("n", "-", function()
-  local cur_file = vim.fn.expand "%:t"
-  vim.cmd.Ex()
-  vim.fn.search("^" .. cur_file .. "$")
-end, { desc = "Open a file explorer" })
-
 map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Make the current file executable" })
 map("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current file" })
+map("n", "<leader><leader>l", "<cmd>.lua<CR>", { desc = "Execute the current line" })
+
+map("n", "]q", "<cmd>cnext<CR>", { desc = "Go to next item in the quickfix list" })
+map("n", "[q", "<cmd>cprev<CR>", { desc = "Go to previous item in the quickfix list" })
 
 map("n", "<M-,>", "<c-w>5<", { desc = "Move split to the left by 5 columns" })
 map("n", "<M-.>", "<c-w>5>", { desc = "Move split to the right by 5 columns" })
@@ -31,8 +29,6 @@ map("t", "<Esc><Esc>", "<Esc><C-\\><C-n>", { desc = "Exit terminal mode" })
 map("x", "<leader>p", '"_dP', { desc = "Delete into void register when pasting" })
 map({ "n", "x" }, "<leader>d", '"_d', { desc = "Delete into void register" })
 map({ "n", "x" }, "<leader>y", '"+y', { desc = "Yank into system clipboard" })
-map("n", "<leader>D", '"_d$', { desc = "Delete to end of line into void register" })
-map("n", "<leader>Y", '"+y$', { desc = "Yank to end of line into the system clipboard" })
 
 map("n", "<leader>%", "<cmd>let @+=@%<CR>", { desc = "Copy file path to system clipboard" })
 

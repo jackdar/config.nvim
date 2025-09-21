@@ -1,14 +1,14 @@
 return {
   {
     dir = "~/plugins/sykes.nvim",
-    event = "VeryLazy",
+    cmd = "Test",
     config = function()
       require("sykes").setup()
     end,
   },
   {
     dir = "~/plugins/nvim-tabline",
-    dependencies = { "nvim-tree/nvim-web-devicons" }, -- optional
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     event = { "TabNew" },
     config = function()
       require("tabline").setup {

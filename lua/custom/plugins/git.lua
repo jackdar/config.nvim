@@ -4,9 +4,8 @@ return {
     dependencies = {
       "tpope/vim-rhubarb",
     },
-    event = "BufReadPre",
     keys = {
-      { "<leader>G", "<cmd>tab Git<CR>" },
+      { "<leader>G",  "<cmd>tab Git<CR>" },
       { "<leader>ga", "<cmd>Git add %:p<CR>" },
       { "<leader>gs", "<cmd>G<CR>" },
       { "<leader>gt", "<cmd>Git commit -v -q %:p<CR>" },
@@ -49,8 +48,7 @@ return {
           end
         end, { desc = "Jump to previous git [c]hange" })
 
-        -- Actions
-        -- visual mode
+        -- Visual mode
         map("v", "<leader>hs", function()
           gitsigns.stage_hunk { vim.fn.line ".", vim.fn.line "v" }
         end, { desc = "stage git hunk" })
@@ -58,7 +56,7 @@ return {
           gitsigns.reset_hunk { vim.fn.line ".", vim.fn.line "v" }
         end, { desc = "reset git hunk" })
 
-        -- normal mode
+        -- Normal mode
         map("n", "<leader>hs", gitsigns.stage_hunk, { desc = "git [s]tage hunk" })
         map("n", "<leader>hr", gitsigns.reset_hunk, { desc = "git [r]eset hunk" })
         map("n", "<leader>hS", gitsigns.stage_buffer, { desc = "git [S]tage buffer" })

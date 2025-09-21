@@ -2,7 +2,7 @@
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+  group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
   callback = function()
     vim.hl.on_yank()
   end,
@@ -22,13 +22,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.cmd "set number"
-
-    -- Expand comments
-    if vim.g.EXPANDCOMMENTS then
-      vim.cmd "set formatoptions-="
-    else
-      vim.cmd "set formatoptions-=ro"
-    end
+    vim.cmd "set formatoptions-=ro"
 
     -- Set relative line numbers
     if vim.g.RELATIVENUMBER then
@@ -39,6 +33,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
+-- Wrap text in Telescope previewer
 vim.api.nvim_create_autocmd("User", {
   pattern = "TelescopePreviewerLoaded",
   callback = function(args)

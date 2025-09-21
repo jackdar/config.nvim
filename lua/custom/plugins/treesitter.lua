@@ -1,59 +1,84 @@
 return {
-  { -- Highlight, edit, and navigate code
+  {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    event = "BufReadPre",
     build = ":TSUpdate",
-    event = "BufReadPost",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "nvim-treesitter/nvim-treesitter-refactor",
-      {
-        "nvim-treesitter/nvim-treesitter-context",
-        opts = {
-          max_lines = 10,
+    config = function()
+      require("nvim-treesitter").setup {
+        ensure_installed = {
+          "bash",
+          "c",
+          "cpp",
+          "css",
+          "diff",
+          "dockerfile",
+          "editorconfig",
+          "git_config",
+          "git_rebase",
+          "gitattributes",
+          "gitcommit",
+          "gitignore",
+          "go",
+          "gomod",
+          "gosum",
+          "graphql",
+          "html",
+          "java",
+          "javadoc",
+          "javascript",
+          "jsdoc",
+          "json",
+          "jsonc",
+          "lua",
+          "luadoc",
+          "markdown",
+          "markdown_inline",
+          "php",
+          "phpdoc",
+          "python",
+          "query",
+          "regex",
+          "rust",
+          "sql",
+          "ssh_config",
+          "toml",
+          "tsx",
+          "typescript",
+          "xml",
+          "yaml",
+          "zig",
         },
-      },
-      "EmranMR/tree-sitter-blade",
-    },
-    main = "nvim-treesitter.configs",
+      }
+
+      vim.api.nvim_create_autocmd("User", {
+        group = vim.api.nvim_create_augroup("custom-treesitter", { clear = true }),
+        pattern = "TSUpdate",
+        callback = function()
+          local parsers = require "nvim-treesitter.parsers"
+
+          parsers.blade = {
+            install_info = {
+              url = "https://github.com/EmranMR/tree-sitter-blade",
+              files = { "src/parser.c" },
+              branch = "main",
+            },
+            file = "blade",
+          }
+        end,
+      })
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "main",
+    event = "BufReadPre",
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "BufReadPre",
     opts = {
-      ensure_installed = {
-        "bash",
-        "c",
-        "diff",
-        "html",
-        "lua",
-        "luadoc",
-        "markdown",
-        "markdown_inline",
-        "query",
-        "vim",
-        "vimdoc",
-        "python",
-        "javascript",
-        "typescript",
-        "regex",
-        "sql",
-        "dockerfile",
-        "json",
-        "go",
-        "gitignore",
-        "graphql",
-        "yaml",
-        "tsx",
-        "java",
-        "toml",
-        "ruby",
-        "php",
-        "html",
-        "css",
-        "blade",
-      },
-      -- Autoinstall languages that are not installed
-      auto_install = true,
-      highlight = {
-        enable = true,
-      },
-      indent = { enable = true },
+      max_lines = 10,
     },
   },
 }

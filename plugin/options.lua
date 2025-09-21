@@ -1,41 +1,37 @@
 -- [[ Options ]]
-local o = vim.o
+vim.o.inccommand = "split"
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
-o.inccommand = "split"
-o.ignorecase = true
-o.smartcase = true
+vim.o.number = true
+vim.o.relativenumber = vim.g.RELATIVENUMBER
 
-o.number = true
-o.relativenumber = vim.g.RELATIVENUMBER
+vim.o.splitbelow = true
+vim.o.splitright = true
 
-o.splitbelow = true
-o.splitright = true
+vim.o.scrolloff = 4
+vim.o.swapfile = false
+vim.o.backup = false
+vim.o.undofile = true
 
-o.signcolumn = "yes"
+vim.o.hlsearch = false
+vim.o.incsearch = true
 
-o.swapfile = false
-o.backup = false
-o.undofile = true
+vim.o.termguicolors = true
+vim.o.signcolumn = "yes"
+vim.o.colorcolumn = "120"
 
-o.hlsearch = false
-o.incsearch = true
-o.termguicolors = true
-o.background = "dark"
-o.colorcolumn = "120"
+vim.o.wrap = false
+vim.o.linebreak = true
+vim.o.breakindent = true
+vim.o.smartindent = true
 
-o.wrap = false
-o.linebreak = true
-o.breakindent = true
-o.smartindent = true
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
 
-o.tabstop = 4
-o.softtabstop = 4
-o.shiftwidth = 4
-o.expandtab = true
+vim.o.foldmethod = "manual"
 
-o.foldmethod = "manual"
-
-o.updatetime = 250
-o.timeoutlen = 300
-
-o.scrolloff = 4
+vim.o.updatetime = 250
+vim.o.timeoutlen = 300
