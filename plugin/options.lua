@@ -19,12 +19,12 @@ vim.o.incsearch = true
 
 vim.o.termguicolors = true
 vim.o.signcolumn = "yes"
-vim.o.colorcolumn = "120"
+-- vim.o.colorcolumn = "120"
 
 vim.o.wrap = false
 vim.o.linebreak = true
-vim.o.breakindent = true
-vim.o.smartindent = true
+vim.o.smartindent = false
+vim.o.autoindent = false
 
 vim.o.tabstop = 4
 vim.o.softtabstop = 4
@@ -35,3 +35,8 @@ vim.o.foldmethod = "manual"
 
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
+
+if vim.fn.executable "rg" == 1 then
+  vim.o.grepprg = "rg --vimgrep --no-heading --smart-case"
+  vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m,%f"
+end

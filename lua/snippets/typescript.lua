@@ -1,1 +1,1 @@
-return require "snippets.shared.shared"
+return require "snippets.js.shared"

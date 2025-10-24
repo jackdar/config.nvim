@@ -1,20 +1,17 @@
 return {
-  "mason-org/mason-lspconfig.nvim",
-  event = { "BufReadPre", "BufNewFile" },
-  opts = {},
-  dependencies = {
-    { "mason-org/mason.nvim", opts = {} },
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    {
-      "neovim/nvim-lspconfig",
-      dependencies = {
-        {
-          "folke/lazydev.nvim",
-          ft = "lua",
-          opts = {
-            library = {
-              { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-            },
+  {
+    "neovim/nvim-lspconfig",
+    event = { "VeryLazy" },
+    dependencies = {
+        { "mason-org/mason.nvim", opts = {} },
+        "mason-org/mason-lspconfig.nvim",
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+      {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+          library = {
+            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
           },
         },
         { "j-hui/fidget.nvim", opts = {} },
@@ -121,6 +118,20 @@ return {
           },
         })
 
+        vim.lsp.config("phpactor", {
+          init_options = {
+            ["language_server_phpstan.enabled"] = true,
+            ["language_server.diagnostic_ignore_codes"] = {
+              "worse.docblock_missing_param",
+              "worse.docblock_missing_return_type",
+              "worse.missing_return_type",
+              "fix_namespace_class_name",
+            },
+          },
+        })
+
+        vim.lsp.enable "sourcekit"
+
         require("mason-lspconfig").setup()
         require("mason-tool-installer").setup {
           ensure_installed = {
@@ -131,11 +142,13 @@ return {
             "prettierd",
             "shfmt",
             "rust-analyzer",
-            "rustfmt",
             "gopls",
             "goimports-reviser",
             "phpactor",
             "blade-formatter",
+            "astro-language-server",
+            "graphql-language-service-cli",
+            "tailwindcss-language-server",
           },
         }
       end,

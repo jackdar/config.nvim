@@ -8,6 +8,7 @@ return {
         disable_background = true,
         highlight_groups = {
           WinBar = { bg = "none" },
+          StatusLine = { bg = "none" },
         },
       }
       vim.cmd.colorscheme "rose-pine"
