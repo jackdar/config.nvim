@@ -44,7 +44,7 @@ return {
           suggestion = { enabled = false },
           panel = { enabled = false },
           copilot_node_command = vim.fn.expand "$HOME"
-            .. "/.local/share/fnm/node-versions/v22.15.0/installation/bin/node",
+            .. "/.local/share/fnm/aliases/default/bin/node",
         },
       },
       {
