@@ -22,7 +22,11 @@ return {
             end,
           },
         },
-        opts = {},
+        config = function()
+          require("luasnip").config.set_config {
+            cut_selection_keys = "<Tab>",
+          }
+        end,
       },
       {
         "folke/lazydev.nvim",
@@ -34,17 +38,16 @@ return {
         },
       },
       {
-        "fang2hou/blink-copilot",
-        dependencies = {
-          {
-            "zbirenbaum/copilot.lua",
-            cmd = "Copilot",
-            opts = {
-              suggestion = { enabled = false },
-              panel = { enabled = false },
-            },
-          },
+        "zbirenbaum/copilot.lua",
+        event = "VeryLazy",
+        opts = {
+          suggestion = { enabled = false },
+          panel = { enabled = false },
+          copilot_node_command = vim.fn.expand "~/.local/share/fnm/aliases/default/bin/node",
         },
+      },
+      {
+        "fang2hou/blink-copilot",
       },
     },
     --- @module 'blink.cmp'
@@ -84,9 +87,9 @@ return {
       },
       snippets = { preset = "luasnip" },
       fuzzy = { implementation = "prefer_rust_with_warning" },
-      enabled = function()
-        return not vim.tbl_contains({ "markdown" }, vim.bo.filetype)
-      end,
+      -- enabled = function()
+      --   return not vim.tbl_contains({ "markdown" }, vim.bo.filetype)
+      -- end,
     },
   },
 }

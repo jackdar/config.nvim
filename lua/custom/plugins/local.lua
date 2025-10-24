@@ -1,7 +1,7 @@
 return {
   {
     dir = "~/plugins/sykes.nvim",
-    cmd = "Test",
+    event = "VeryLazy",
     config = function()
       require("sykes").setup()
     end,

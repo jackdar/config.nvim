@@ -19,7 +19,6 @@ return {
   },
   {
     "tpope/vim-sleuth",
-    event = "BufReadPre",
   },
   {
     "tpope/vim-vinegar",
@@ -59,7 +58,7 @@ return {
   },
   {
     "windwp/nvim-ts-autotag",
-    ft = { "javascript", "typescript", "jsx", "tsx", "html", "blade", "php", "xml" },
+    ft = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html", "blade", "php", "xml", "astro" },
     opts = {},
   },
   {
@@ -71,5 +70,29 @@ return {
     opts = {
       render_modes = { "n", "c", "t" },
     },
+  },
+  {
+    "wojciech-kulik/xcodebuild.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    config = function()
+      require("xcodebuild").setup()
+    end,
+  },
+  {
+    "numToStr/Comment.nvim",
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
+    config = function()
+      require("Comment").setup {
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+      }
+    end,
+  },
+  {
+    "ThePrimeagen/vim-be-good",
   },
 }

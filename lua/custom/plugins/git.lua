@@ -4,8 +4,9 @@ return {
     dependencies = {
       "tpope/vim-rhubarb",
     },
+    cmd = { "Git", "G" },
     keys = {
-      { "<leader>G",  "<cmd>tab Git<CR>" },
+      { "<leader>G", "<cmd>tab Git<CR>" },
       { "<leader>ga", "<cmd>Git add %:p<CR>" },
       { "<leader>gs", "<cmd>G<CR>" },
       { "<leader>gt", "<cmd>Git commit -v -q %:p<CR>" },
@@ -13,6 +14,10 @@ return {
       { "<leader>ge", "<cmd>Gedit<CR>" },
       { "<leader>gr", "<cmd>Gread<CR>" },
       { "<leader>gr", "<cmd>Gread<CR>" },
+      { "<leader>gc", "<cmd>G checkout -<CR>" },
+      { "<leader>gC", "<cmd>G checkout master<CR>" },
+      { "<leader>gB", "<cmd>G rebase master<CR>" },
+      { "<leader>gb", ":G checkout -b " },
       { "<leader>gl", "<cmd>Git pull<CR>" },
       { "<leader>gp", "<cmd>Git push origin HEAD<CR>" },
       { "<leader>gP", "<cmd>Git push origin HEAD --force<CR>" },

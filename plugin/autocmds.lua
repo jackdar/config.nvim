@@ -36,7 +36,15 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -- Wrap text in Telescope previewer
 vim.api.nvim_create_autocmd("User", {
   pattern = "TelescopePreviewerLoaded",
-  callback = function(args)
+  callback = function()
     vim.wo.wrap = true
+  end,
+})
+
+-- Automatically open the quickfix window if there are any entries
+vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+  group = vim.api.nvim_create_augroup("open_quickfix", { clear = true }),
+  callback = function()
+    vim.cmd "cwindow"
   end,
 })

@@ -1,6 +1,6 @@
 return {
   "mason-org/mason-lspconfig.nvim",
-  event = { "BufReadPre", "BufNewFile" },
+  event = { "VimEnter", "BufReadPre", "BufNewFile" },
   opts = {},
   dependencies = {
     { "mason-org/mason.nvim", opts = {} },
@@ -121,21 +121,42 @@ return {
           },
         })
 
+        vim.lsp.config("intelephense", {
+          settings = {
+            intelephense = {
+              files = {
+                maxSize = 5000000,
+                exclude = { "**/cdk.out/**" },
+              },
+              diagnostics = {
+                enable = true,
+                exclude = { "missingDocblock", "undefinedMethod", "undefinedProperty" },
+              },
+            },
+          },
+        })
+
+        vim.lsp.enable "sourcekit"
+
         require("mason-lspconfig").setup()
         require("mason-tool-installer").setup {
           ensure_installed = {
             "lua_ls",
             "stylua",
             "vtsls",
+            -- "ts_ls",
+            "vue_ls",
             "eslint-lsp",
             "prettierd",
             "shfmt",
             "rust-analyzer",
-            "rustfmt",
             "gopls",
             "goimports-reviser",
-            "phpactor",
+            -- "phpactor",
             "blade-formatter",
+            "astro-language-server",
+            "graphql-language-service-cli",
+            "tailwindcss-language-server",
           },
         }
       end,

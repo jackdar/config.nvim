@@ -7,6 +7,10 @@ local function map(mode, l, r, opts)
   vim.keymap.set(mode, l, r, opts)
 end
 
+map("n", "<leader>-", function()
+  vim.cmd("Ex " .. vim.fn.getcwd())
+end, { desc = "Open file explorer in current working directory" })
+
 map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Make the current file executable" })
 map("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current file" })
 map("n", "<leader><leader>l", "<cmd>.lua<CR>", { desc = "Execute the current line" })
@@ -23,6 +27,7 @@ map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear highlights on search wh
 map("n", "<leader>w", ":noautocmd w %<CR>", { desc = "Quick [W]rite the current buffer with no auto commands" })
 
 map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+map("n", "<leader>qf", vim.diagnostic.setqflist, { desc = "Set [Q]uickfix list to diagnostics" })
 
 map("t", "<Esc><Esc>", "<Esc><C-\\><C-n>", { desc = "Exit terminal mode" })
 
@@ -46,8 +51,8 @@ map("v", ">", ">gv", { desc = "Stay in visual mode after indenting" })
 map("n", "<leader>bd", "<cmd>bd!<CR>", { desc = "Close the current buffer" })
 map("n", "<leader>bc", "<cmd>enew<CR>", { desc = "Create a new buffer" })
 
-map("n", "<leader>m", "<cmd>make run<CR>", { desc = "Quickly make run from Makefile" })
-map("n", "<leader>M", "<cmd>make build<CR>", { desc = "Quickly make build from Makefile" })
+map("n", "<leader>m", "<cmd>make<CR>", { desc = "Quickly make run from Makefile" })
+map("n", "<leader>M", "<cmd>make run<CR>", { desc = "Quickly make build from Makefile" })
 
 map("i", "<C-r>", "<C-r><C-o>", { desc = "Insert contents of named register literally" })
 
