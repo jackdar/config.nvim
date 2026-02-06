@@ -33,7 +33,7 @@ return {
   },
   {
     "NiklasV1/nvim-colorizer.lua",
-    event = "BufReadPre",
+    ft = { "css", "sass" },
     config = function()
       require("colorizer").setup()
     end,
@@ -71,16 +71,16 @@ return {
       render_modes = { "n", "c", "t" },
     },
   },
-  {
-    "wojciech-kulik/xcodebuild.nvim",
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-      "MunifTanjim/nui.nvim",
-    },
-    config = function()
-      require("xcodebuild").setup()
-    end,
-  },
+  -- {
+  --   "wojciech-kulik/xcodebuild.nvim",
+  --   dependencies = {
+  --     "nvim-telescope/telescope.nvim",
+  --     "MunifTanjim/nui.nvim",
+  --   },
+  --   config = function()
+  --     require("xcodebuild").setup()
+  --   end,
+  -- },
   {
     "numToStr/Comment.nvim",
     dependencies = {
@@ -93,6 +93,8 @@ return {
     end,
   },
   {
-    "ThePrimeagen/vim-be-good",
+    "mrcjkb/rustaceanvim",
+    version = "^6", -- Recommended
+    lazy = false, -- This plugin is already lazy
   },
 }

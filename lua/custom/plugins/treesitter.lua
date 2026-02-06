@@ -1,5 +1,5 @@
 return {
-  {
+   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = "BufReadPre",
@@ -51,7 +51,6 @@ return {
         "sql",
         "ssh_config",
         "swift",
-        "tmux",
         "toml",
         "tsx",
         "typescript",
@@ -63,11 +62,11 @@ return {
       auto_install = true,
       highlight = {
         enable = true,
-        disable = { "csv" },
+        disable = { "csv", "tmux" },
       },
       indent = {
         enable = true,
-        disable = { "astro" }
+        disable = { "astro" },
       },
       incremental_selection = { enable = true },
     },

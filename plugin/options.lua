@@ -10,6 +10,7 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 
 vim.o.scrolloff = 4
+vim.o.sidescrolloff = 8
 vim.o.swapfile = false
 vim.o.backup = false
 vim.o.undofile = true
@@ -34,9 +35,12 @@ vim.o.expandtab = true
 vim.o.foldmethod = "manual"
 
 vim.o.updatetime = 250
-vim.o.timeoutlen = 300
+vim.o.timeoutlen = 100
+vim.o.ttimeoutlen = 0
 
 if vim.fn.executable "rg" == 1 then
-  vim.o.grepprg = "rg --vimgrep --no-heading --smart-case"
+  vim.o.grepprg = "rg --vimgrep --no-heading --no-line-number --smart-case --color=never --hidden -g '!node_modules'"
   vim.o.grepformat = "%f:%l:%c:%m,%f:%l:%m,%f"
 end
+
+-- vim.o.guicursor = "i-ci:blinkwait300-blinkon200-blinkoff150"

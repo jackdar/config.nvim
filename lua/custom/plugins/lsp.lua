@@ -1,7 +1,6 @@
 return {
   "mason-org/mason-lspconfig.nvim",
-  event = { "VimEnter", "BufReadPre", "BufNewFile" },
-  opts = {},
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     { "mason-org/mason.nvim", opts = {} },
     "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -17,9 +16,21 @@ return {
             },
           },
         },
-        { "j-hui/fidget.nvim", opts = {} },
+        {
+          "j-hui/fidget.nvim",
+          config = function()
+            require("fidget").setup { window = { winblend = 0 } }
+          end,
+        },
       },
       config = function()
+        -- Set Node.js path for all LSPs to use fnm's LTS version
+        -- This ensures LSPs use a modern Node.js version instead of whatever's in the current shell
+        local fnm_aliases_path = vim.fn.expand "~/.local/share/fnm/aliases/lts-latest/bin"
+        if vim.fn.isdirectory(fnm_aliases_path) == 1 then
+          vim.env.PATH = fnm_aliases_path .. ":" .. vim.env.PATH
+        end
+
         vim.api.nvim_create_autocmd("LspAttach", {
           group = vim.api.nvim_create_augroup("lsp-attach", {}),
           callback = function(args)
@@ -114,9 +125,6 @@ return {
               diagnostics = {
                 disable = { "missing-fields" },
               },
-              workspace = {
-                library = vim.api.nvim_get_runtime_file("", true),
-              },
             },
           },
         })
@@ -136,6 +144,9 @@ return {
           },
         })
 
+        vim.lsp.config("sourcekit", {
+          filetypes = { "swift", "objc", "objcpp" },
+        })
         vim.lsp.enable "sourcekit"
 
         require("mason-lspconfig").setup()
@@ -149,14 +160,19 @@ return {
             "eslint-lsp",
             "prettierd",
             "shfmt",
-            "rust-analyzer",
+            -- "rust-analyzer",
+            "tailwindcss-language-server",
+            "svelte-language-server",
             "gopls",
             "goimports-reviser",
             -- "phpactor",
             "blade-formatter",
             "astro-language-server",
+            "bash-language-server",
             "graphql-language-service-cli",
-            "tailwindcss-language-server",
+            "fish-lsp",
+            -- "sqls",
+            "sql-formatter",
           },
         }
       end,

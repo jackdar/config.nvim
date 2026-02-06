@@ -17,26 +17,27 @@ return {
     formatters_by_ft = {
       lua = { "stylua" },
       go = { "goimports-reviser" },
-      javascript = { "prettier" },
-      typescript = { "prettier" },
-      javascriptreact = { "prettier" },
-      typescriptreact = { "prettier" },
-      html = { "prettier" },
-      css = { "prettier" },
-      json = { "prettier" },
-      astro = { "prettier" },
+      javascript = { "prettierd", "prettier" },
+      typescript = { "prettierd", "prettier" },
+      javascriptreact = { "prettierd", "prettier" },
+      typescriptreact = { "prettierd", "prettier" },
+      html = { "prettierd", "prettier" },
+      css = { "prettierd", "prettier" },
+      json = { "prettierd", "prettier" },
+      astro = { "prettierd", "prettier" },
       bash = { "shfmt" },
       sh = { "shfmt" },
       zsh = { "shfmt" },
       blade = { "blade-formatter" },
       rust = { "rustfmt" },
+      php = { "pint", "php-cs-fixer" },
     },
 
     default_format_opts = {
       lsp_format = "fallback",
     },
 
-    format_on_save = function(bufnr)
+    format_after_save = function(bufnr)
       local ignore_filetypes = { "sql", "java" }
       if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
         return
@@ -46,7 +47,7 @@ return {
         return
       end
       -- if vim.g.autoformat_enabled or vim.b[bufnr].autoformat_enabled then
-      return { timeout_ms = 500, lsp_format = "fallback" }
+      return { async = true, timeout_ms = 2500, lsp_format = "fallback" }
       -- end
     end,
 

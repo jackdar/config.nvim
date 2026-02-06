@@ -18,15 +18,10 @@ return {
             "rafamadriz/friendly-snippets",
             config = function()
               require("luasnip.loaders.from_vscode").lazy_load()
-              require("luasnip.loaders.from_lua").lazy_load { paths = { "~/.config/nvim/lua/snippets" } }
+              -- require("luasnip.loaders.from_lua").lazy_load { paths = { "~/.config/nvim/lua/snippets" } }
             end,
           },
         },
-        config = function()
-          require("luasnip").config.set_config {
-            cut_selection_keys = "<Tab>",
-          }
-        end,
       },
       {
         "folke/lazydev.nvim",
@@ -39,15 +34,15 @@ return {
       },
       {
         "zbirenbaum/copilot.lua",
-        event = "VeryLazy",
+        event = { "VeryLazy" },
+        dependencies = {
+          "fang2hou/blink-copilot",
+        },
         opts = {
           suggestion = { enabled = false },
           panel = { enabled = false },
           copilot_node_command = vim.fn.expand "~/.local/share/fnm/aliases/default/bin/node",
         },
-      },
-      {
-        "fang2hou/blink-copilot",
       },
     },
     --- @module 'blink.cmp'
@@ -67,25 +62,30 @@ return {
             auto_insert = false,
           },
         },
-        accept = {
-          auto_brackets = {
-            enabled = true,
-          },
-        },
+        -- accept = {
+        --   auto_brackets = {
+        --     enabled = true,
+        --   },
+        -- },
       },
       sources = {
         default = { "lsp", "path", "snippets", "lazydev", "buffer", "copilot" },
+        per_filetype = {
+          sql = { "snippets", "dadbod", "buffer" },
+          mysql = { "snippets", "dadbod", "buffer" },
+        },
         providers = {
           lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
           copilot = {
             name = "copilot",
             module = "blink-copilot",
-            score_offset = 0,
+            score_offset = 200,
             async = true,
           },
+          dadbod = { name = "SQL", module = "vim_dadbod_completion.blink" },
         },
       },
-      snippets = { preset = "luasnip" },
+      -- snippets = { preset = "luasnip" },
       fuzzy = { implementation = "prefer_rust_with_warning" },
       -- enabled = function()
       --   return not vim.tbl_contains({ "markdown" }, vim.bo.filetype)

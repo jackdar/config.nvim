@@ -1,27 +1,59 @@
+local function rebase_branch()
+  -- If master branch exists and no main or development, rebase master
+  -- If main branch exists and no master or development, rebase main
+  -- If development exists branch, rebase development
+  local branches = vim.fn.systemlist "git branch --list"
+
+  -- Trim whitespace from branch names
+  for i, branch in ipairs(branches) do
+    branches[i] = branch:match "^%s*(.-)%s*$"
+  end
+
+  -- Check if branches is empty
+  if branches == nil then
+    print "No branches found"
+    return
+  end
+
+  if vim.tbl_contains(branches, "master") then
+    vim.cmd "G rebase master"
+  elseif vim.tbl_contains(branches, "main") then
+    vim.cmd "G rebase main"
+  elseif vim.tbl_contains(branches, "development") then
+    vim.cmd "G rebase development"
+  else
+    -- Ask which branch
+    local input = vim.fn.input "Rebase onto branch: "
+    vim.cmd("G rebase " .. input)
+  end
+end
+
 return {
   {
     "tpope/vim-fugitive",
     dependencies = {
       "tpope/vim-rhubarb",
     },
-    cmd = { "Git", "G" },
-    keys = {
-      { "<leader>G", "<cmd>tab Git<CR>" },
-      { "<leader>ga", "<cmd>Git add %:p<CR>" },
-      { "<leader>gs", "<cmd>G<CR>" },
-      { "<leader>gt", "<cmd>Git commit -v -q %:p<CR>" },
-      { "<leader>gd", "<cmd>Gvdiff HEAD<CR>" },
-      { "<leader>ge", "<cmd>Gedit<CR>" },
-      { "<leader>gr", "<cmd>Gread<CR>" },
-      { "<leader>gr", "<cmd>Gread<CR>" },
-      { "<leader>gc", "<cmd>G checkout -<CR>" },
-      { "<leader>gC", "<cmd>G checkout master<CR>" },
-      { "<leader>gB", "<cmd>G rebase master<CR>" },
-      { "<leader>gb", ":G checkout -b " },
-      { "<leader>gl", "<cmd>Git pull<CR>" },
-      { "<leader>gp", "<cmd>Git push origin HEAD<CR>" },
-      { "<leader>gP", "<cmd>Git push origin HEAD --force<CR>" },
-    },
+    event = "VeryLazy",
+    config = function()
+      vim.keymap.set("n", "<leader>G", "<cmd>tab Git<CR>")
+      vim.keymap.set("n", "<leader>ga", "<cmd>Git add %:p<CR>")
+      vim.keymap.set("n", "<leader>gs", "<cmd>G<CR>")
+      vim.keymap.set("n", "<leader>gt", "<cmd>Git commit -v -q %:p<CR>")
+      vim.keymap.set("n", "<leader>gd", "<cmd>Gvdiff HEAD<CR>")
+      vim.keymap.set("n", "<leader>ge", "<cmd>Gedit<CR>")
+      vim.keymap.set("n", "<leader>gr", "<cmd>Gread<CR>")
+      vim.keymap.set("n", "<leader>gr", "<cmd>Gread<CR>")
+      vim.keymap.set("n", "<leader>gc", "<cmd>G checkout -<CR>")
+      vim.keymap.set("n", "<leader>gC", "<cmd>G checkout master<CR>")
+      vim.keymap.set("n", "<leader>gB", function()
+        rebase_branch()
+      end)
+      vim.keymap.set("n", "<leader>gb", ":G checkout -b ")
+      vim.keymap.set("n", "<leader>gl", "<cmd>Git pull<CR>")
+      vim.keymap.set("n", "<leader>gp", "<cmd>Git push origin HEAD<CR>")
+      vim.keymap.set("n", "<leader>gP", "<cmd>Git push origin HEAD --force<CR>")
+    end,
   },
   {
     "lewis6991/gitsigns.nvim",

@@ -15,6 +15,9 @@ map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Make the current file ex
 map("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current file" })
 map("n", "<leader><leader>l", "<cmd>.lua<CR>", { desc = "Execute the current line" })
 
+map("i", "<s-<Up>", "")
+map("i", "<s-<Down>", "")
+
 map("n", "]q", "<cmd>cnext<CR>", { desc = "Go to next item in the quickfix list" })
 map("n", "[q", "<cmd>cprev<CR>", { desc = "Go to previous item in the quickfix list" })
 
@@ -51,10 +54,11 @@ map("v", ">", ">gv", { desc = "Stay in visual mode after indenting" })
 map("n", "<leader>bd", "<cmd>bd!<CR>", { desc = "Close the current buffer" })
 map("n", "<leader>bc", "<cmd>enew<CR>", { desc = "Create a new buffer" })
 
-map("n", "<leader>m", "<cmd>make<CR>", { desc = "Quickly make run from Makefile" })
+map("n", "<leader>m", "<cmd>make build<CR>", { desc = "Quickly make run from Makefile" })
 map("n", "<leader>M", "<cmd>make run<CR>", { desc = "Quickly make build from Makefile" })
+map("n", "<leader>ms", "<cmd>!npx cdk synth<CR>", { desc = "Quickly run CDK synth in project" })
 
-map("i", "<C-r>", "<C-r><C-o>", { desc = "Insert contents of named register literally" })
+-- map("i", "<C-r>", "<C-r><C-o>", { desc = "Insert contents of named register literally" })
 
 map("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", {
   desc = "Toggle find and replace for the word under the cursor",
@@ -69,3 +73,8 @@ map("n", "<leader>ln", function()
   vim.cmd "set relativenumber!"
   vim.notify("Relative line numbering " .. (vim.g.RELATIVENUMBER and "enabled" or "disabled"), vim.log.levels.INFO)
 end, { desc = "Quickly toggle relative line numbering" })
+
+map("n", "<leader>cp", "<cmd>CopilotToggle<CR>", { desc = "Toggle Copilot on/off" })
+
+-- Fix lag when typing < in insert mode by mapping it explicitly
+map("i", "<lt>", "<lt>", { desc = "Insert < character without lag" })
